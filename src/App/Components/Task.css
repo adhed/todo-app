@@ -1,3 +1,9 @@
+.task {
+    display: block;
+    font-size: 1.3em;
+    line-height: 1.8em;
+}
+
 .highlighted {
     background: yellow;
 }

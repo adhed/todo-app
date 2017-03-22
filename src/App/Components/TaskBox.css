@@ -1,3 +1,12 @@
-input {
-    margin: '0 15px 0 15px'
+.bottom {
+    margin-top: auto;
 }
+
+.form-group {
+    color: gray;
+}
+
+.form-group > label {
+    margin-right: 15px;
+}
+

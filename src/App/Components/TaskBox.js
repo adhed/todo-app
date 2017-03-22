@@ -75,6 +75,7 @@ class TaskBox extends Component {
           marginTop: '25px',
           border: '3px solid grey',
           minHeight: '400px',
+
           padding: '0 20px 30px 20px'
       };
     return (

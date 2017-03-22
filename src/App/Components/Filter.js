@@ -16,7 +16,7 @@ class Filter extends Component {
         let tasksWord = this.props.foundedTasks === 1 ? 'task' : 'tasks';
 
         return (
-            <div class="filter">
+            <div className="filter form-group">
                 <label htmlFor="task-filter">Filter</label>
                 <TextField 
                     hintText="Tasks filter"

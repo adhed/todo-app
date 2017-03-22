@@ -36,11 +36,12 @@ class TaskAdder extends Component {
     }
 
     render() {
-        const styles = {
-            marginTop: 'auto',
+        const btnStyles = {
+            marginLeft: 15
         };
+
         return (
-            <div style={styles}>
+            <div className="form-group bottom">
                 <label htmlFor="add-task-input">New task</label>
                 <TextField
                     hintText="Type what should you do"
@@ -54,6 +55,7 @@ class TaskAdder extends Component {
                     label="Add!" 
                     primary={true} 
                     onClick={this.handleSubmit}
+                    style={btnStyles}
                 />
             </div>
         );
