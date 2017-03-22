@@ -69,17 +69,8 @@ class TaskBox extends Component {
     }
 
   render() {
-      const styles = {
-          display: 'flex',
-          flexDirection: 'column',
-          marginTop: '25px',
-          border: '3px solid grey',
-          minHeight: '400px',
-
-          padding: '0 20px 30px 20px'
-      };
     return (
-        <div style={styles}>
+        <div className="task-box">
             <h2>Tasks</h2>
             <Filter changeHandler={this.handleFilterChange} foundedTasks={this.state.foundedTasks}/>
             <TaskList tasks={this.state.tasks}/>

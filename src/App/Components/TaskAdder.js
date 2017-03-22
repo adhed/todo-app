@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 class TaskAdder extends Component {
     constructor(props) {
         super(props);
-        this.state = { value: '' };
+        this.state = { value: '', errorText: '' };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -16,16 +16,20 @@ class TaskAdder extends Component {
     }
 
     handleSubmit() {
+        if (!this.state.value) {
+            this.setState({errorText: 'Task cannot be empty.'});
+            return;
+        }
+
         this.props.taskAddHandler(this.state.value);
-        this.setState({
-            value: ''
-        });
+        this.setState({value: ''});
         this.input.focus();
     }
 
     handleChange(event) {
         this.setState({
-            value: event.target.value
+            value: event.target.value,
+            errorText: ''
         });
     }
 
@@ -50,6 +54,7 @@ class TaskAdder extends Component {
                     value={this.state.value}
                     onChange={this.handleChange}
                     onKeyPress={this.handleKeyPress}
+                    errorText={this.state.errorText}
                 />
                 <RaisedButton
                     label="Add!" 
