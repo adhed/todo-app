@@ -5,7 +5,7 @@ class Task extends Component {
     render() {
         return (
             <h2>
-                {this.props.task.render || this.props.task.text}
+                {this.props.task.number}. {this.props.task.render}
             </h2>
         );
   }

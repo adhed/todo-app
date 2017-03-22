@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Filter from './Filter';
 import TaskList from './TaskList';
 import TaskAdder from './TaskAdder';
+import './TaskBox.css';
 
 class TaskBox extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ class TaskBox extends Component {
         let regex = new RegExp('' + this.filter + '', 'gi');
         this.foundedTasks = 0;
 
-        return previousState.tasks.map(task => {
+        return previousState.tasks.map((task, idx) => {
             let segments = task.text.split(regex);
             let replacements = task.text.match(regex);
             let taskFounded = this.filter && segments.length > 1;
@@ -61,7 +62,7 @@ class TaskBox extends Component {
             if (taskFounded) {
                 this.foundedTasks++;
             }
-
+            task.number = idx + 1;
             task.render = textChildren;
             return task;
         });
@@ -69,11 +70,12 @@ class TaskBox extends Component {
 
   render() {
       const styles = {
-          display: 'block',
-          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
           marginTop: '25px',
-          border: '2px solid grey',
-          minHeight: '400px'
+          border: '3px solid grey',
+          minHeight: '400px',
+          padding: '0 20px 30px 20px'
       };
     return (
         <div style={styles}>

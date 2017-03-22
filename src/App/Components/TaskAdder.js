@@ -37,8 +37,7 @@ class TaskAdder extends Component {
 
     render() {
         const styles = {
-            position: 'absolute',
-            bottom: 0
+            marginTop: 'auto',
         };
         return (
             <div style={styles}>

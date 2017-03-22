@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
+import './Filter.css';
 
 class Filter extends Component {
     constructor(props) {
@@ -12,18 +13,17 @@ class Filter extends Component {
     };
 
     render() {
-        const styles = {
-            padding: '15px'
-        };
+        let tasksWord = this.props.foundedTasks === 1 ? 'task' : 'tasks';
+
         return (
-            <div style={styles}>
+            <div class="filter">
                 <label htmlFor="task-filter">Filter</label>
                 <TextField 
-                    hintText="Type filter"
+                    hintText="Tasks filter"
                     id="task-filter"
                     onChange={this.handleChange}
                 />
-                <span>{this.props.foundedTasks} tasks found</span>
+                <span>{this.props.foundedTasks} {tasksWord} found</span>
             </div>
         );
     }
