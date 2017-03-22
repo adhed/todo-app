@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class TaskAdder extends Component {
     constructor(props) {
@@ -42,9 +43,9 @@ class TaskAdder extends Component {
         return (
             <div style={styles}>
                 <label htmlFor="add-task-input">New task</label>
-                <input 
+                <TextField
+                    hintText="Type what should you do"
                     ref={(input) => { this.input = input; }}
-                    type="text"
                     id="add-task-input" 
                     value={this.state.value}
                     onChange={this.handleChange}

@@ -8,7 +8,8 @@ class TaskBox extends Component {
         super(props);
         this.filter = '';
         this.state = {
-            tasks: []
+            tasks: [],
+            foundedTasks: 0
         };
 
         this.handleTaskAdd = this.handleTaskAdd.bind(this);
@@ -28,26 +29,41 @@ class TaskBox extends Component {
     }
 
     handleFilterChange(filter) {
-        this.filter = filter.toLowerCase();
+        this.filter = filter.split(' ')[0];
         this.filterTasks();
     }
 
     filterTasks() {
-        this.setState((state) => {
-            tasks: state.tasks.forEach(task =>  {
-                if (this.filter) {
-                    let idx = task.text.indexOf(this.filter);
-                    let phraseExists = idx > -1;
-                    let filterLength = this.filter.length;
+        this.setState(previousState => ({
+            tasks: this.getFilteredTasks(previousState),
+            foundedTasks: this.foundedTasks
+        }));
+    }
 
-                    task.highlight = {
-                        show: phraseExists,
-                        startIdx: idx,
-                        endIdx: idx + filterLength,
-                        filter: this.filter
-                    };
-                }
+    getFilteredTasks(previousState) {
+        let regex = new RegExp('' + this.filter + '', 'gi');
+        this.foundedTasks = 0;
+
+        return previousState.tasks.map(task => {
+            let segments = task.text.split(regex);
+            let replacements = task.text.match(regex);
+            let taskFounded = this.filter && segments.length > 1;
+            let textChildren = [];
+
+            segments.forEach((segment, i) => {
+                textChildren.push(React.DOM.span({}, segment));
+                if (segments.length === i + 1) return;
+                textChildren.push(React.DOM.span({
+                    className: 'highlighted'
+                }, replacements[i]));
             });
+
+            if (taskFounded) {
+                this.foundedTasks++;
+            }
+
+            task.render = textChildren;
+            return task;
         });
     }
 
@@ -62,7 +78,7 @@ class TaskBox extends Component {
     return (
         <div style={styles}>
             <h2>Tasks</h2>
-            <Filter changeHandler={this.handleFilterChange} />
+            <Filter changeHandler={this.handleFilterChange} foundedTasks={this.state.foundedTasks}/>
             <TaskList tasks={this.state.tasks}/>
             <TaskAdder taskAddHandler={this.handleTaskAdd}/>
         </div>

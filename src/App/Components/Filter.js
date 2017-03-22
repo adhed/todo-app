@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
 
 class Filter extends Component {
     constructor(props) {
@@ -17,12 +18,12 @@ class Filter extends Component {
         return (
             <div style={styles}>
                 <label htmlFor="task-filter">Filter</label>
-                <input
-                    type="text"
-                    id="task-filter" 
+                <TextField 
+                    hintText="Type filter"
+                    id="task-filter"
                     onChange={this.handleChange}
                 />
-                <span>0 tasks found</span>
+                <span>{this.props.foundedTasks} tasks found</span>
             </div>
         );
     }
