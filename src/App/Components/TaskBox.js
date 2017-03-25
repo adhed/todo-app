@@ -18,8 +18,8 @@ class TaskBox extends Component {
     }
 
     handleTaskAdd(task) {
-        this.setState((state) => {
-            tasks: state.tasks.push({    
+        this.setState(previousState => {
+            tasks: previousState.tasks.push({    
                 text: task,
                 highlight: {
                     show: false
@@ -53,10 +53,11 @@ class TaskBox extends Component {
 
             segments.forEach((segment, i) => {
                 textChildren.push(React.DOM.span({}, segment));
-                if (segments.length === i + 1) return;
-                textChildren.push(React.DOM.span({
-                    className: 'highlighted'
-                }, replacements[i]));
+                if (segments.length !== i + 1) {  
+                    textChildren.push(React.DOM.span({
+                        className: 'highlighted'
+                    }, replacements[i]));
+                }
             });
 
             if (taskFounded) {

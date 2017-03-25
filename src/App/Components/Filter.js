@@ -5,11 +5,20 @@ import './Filter.css';
 class Filter extends Component {
     constructor(props) {
         super(props);
+        this.state = { value: '' };
+
         this.handleChange = this.handleChange.bind(this);
+        this.handleRemoveClick = this.handleRemoveClick.bind(this);
     }
 
     handleChange(event) {
+        this.setState({value: event.target.value});
         this.props.changeHandler(event.target.value);
+    };
+
+    handleRemoveClick(event) {
+        this.setState({value: ''});
+        this.props.changeHandler('');
     };
 
     render() {
@@ -19,10 +28,15 @@ class Filter extends Component {
             <div className="filter form-group">
                 <label htmlFor="task-filter">Filter</label>
                 <TextField 
+                    value={this.state.value}
                     hintText="Tasks filter"
                     id="task-filter"
                     onChange={this.handleChange}
                 />
+                <span 
+                    className="filter-remover" 
+                    onClick={this.handleRemoveClick}
+                    title="Remove filter">x</span>
                 <span>{this.props.foundedTasks} {tasksWord} found</span>
             </div>
         );
