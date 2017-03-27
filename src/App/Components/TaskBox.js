@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Filter from './Filter';
 import TaskList from './TaskList';
 import TaskAdder from './TaskAdder';
+import FontAwesome from 'react-fontawesome';
 import './TaskBox.css';
 
 class TaskBox extends Component {
@@ -104,7 +105,11 @@ class TaskBox extends Component {
   render() {
     return (
         <div className="task-box">
-            <h2>Tasks</h2>
+            <h2>
+                <FontAwesome className="task-icon"
+                    name="thumb-tack" />
+                Tasks
+            </h2>
             <Filter changeHandler={this.handleFilterChange} foundedTasks={this.state.foundedTasks}/>
             <TaskList tasks={this.state.tasks}/>
             <TaskAdder taskAddHandler={this.handleTaskAdd}/>
