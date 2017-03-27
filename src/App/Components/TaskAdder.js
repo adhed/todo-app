@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import './TaskAdder.css';
 
 class TaskAdder extends Component {
     constructor(props) {
@@ -40,12 +41,8 @@ class TaskAdder extends Component {
     }
 
     render() {
-        const btnStyles = {
-            marginLeft: 15
-        };
-
         return (
-            <div className="form-group bottom">
+            <div className="form-group task-adder bottom">
                 <label htmlFor="add-task-input">New task</label>
                 <TextField
                     hintText="Type what should you do"
@@ -60,7 +57,7 @@ class TaskAdder extends Component {
                     label="Add!" 
                     primary={true} 
                     onClick={this.handleSubmit}
-                    style={btnStyles}
+                    className="btn-add"
                 />
             </div>
         );

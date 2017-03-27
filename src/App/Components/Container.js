@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
+import './Container.css';
 
 class Container extends Component {
   render() {
-      const styles = {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-      };
-
     return (
-        <div style={styles}>
+        <div className="container">
             {this.props.element}
         </div>
     );

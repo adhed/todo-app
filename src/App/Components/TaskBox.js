@@ -9,22 +9,28 @@ class TaskBox extends Component {
         super(props);
         this.filter = '';
         this.state = {
-            tasks: [],
-            foundedTasks: 0
+            foundedTasks: 0,
+            tasks: {}
         };
 
         this.handleTaskAdd = this.handleTaskAdd.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
+        this.removeTaskHandler = this.removeTaskHandler.bind(this);
     }
 
-    handleTaskAdd(task) {
+    handleTaskAdd(taskTxt) {
         this.setState(previousState => {
-            tasks: previousState.tasks.push({    
-                text: task,
-                highlight: {
-                    show: false
-                }
-            })
+            let tasks = previousState.tasks;
+            let newTaskIdx = Object.keys(this.state.tasks).length + 1;
+            let newTask = {
+                text: taskTxt,
+                highlight: {show: false}
+            };
+
+            tasks[newTaskIdx] = newTask;
+            return {
+                tasks: tasks
+            }
         });
         this.filterTasks();
     }
@@ -34,39 +40,65 @@ class TaskBox extends Component {
         this.filterTasks();
     }
 
+    removeTaskHandler(taskNumber) {
+        this.setState(previousState => {
+            delete previousState.tasks[taskNumber];
+            return {
+                tasks: previousState.tasks
+            };
+        });
+        this.filterTasks();
+    }
+
     filterTasks() {
-        this.setState(previousState => ({
-            tasks: this.getFilteredTasks(previousState),
-            foundedTasks: this.foundedTasks
-        }));
+        this.setState(previousState => {
+            return {
+                tasks: this.getFilteredTasks(previousState),
+                foundedTasks: this.foundedTasks
+            }
+        });
     }
 
     getFilteredTasks(previousState) {
-        let regex = new RegExp('' + this.filter + '', 'gi');
+        let filteredTasks = {};
+        let taskIdx = 0;
         this.foundedTasks = 0;
 
-        return previousState.tasks.map((task, idx) => {
-            let segments = task.text.split(regex);
-            let replacements = task.text.match(regex);
-            let taskFounded = this.filter && segments.length > 1;
-            let textChildren = [];
+        for (let taskNumber of Object.keys(previousState.tasks)) {
+            let task = previousState.tasks[taskNumber];
+            let { textParts, taskFounded } = this.parseTaskText(task.text);
+        
+            taskFounded && this.foundedTasks++;
+            task.number = ++taskIdx;
+            task.render = textParts;
+            task.removeTaskCallback = this.removeTaskHandler;
+            filteredTasks[task.number] = task;
+        }
+       return filteredTasks;
+    }
 
-            segments.forEach((segment, i) => {
-                textChildren.push(React.DOM.span({}, segment));
-                if (segments.length !== i + 1) {  
-                    textChildren.push(React.DOM.span({
-                        className: 'highlighted'
-                    }, replacements[i]));
-                }
-            });
+    parseTaskText(taskText) {
+        let regex = new RegExp('' + this.filter + '', 'gi');
+        let segments = taskText.split(regex);
+        let replacements = taskText.match(regex);
+        let taskFounded = this.filter && segments.length > 1;
+        let textParts = [];
 
-            if (taskFounded) {
-                this.foundedTasks++;
-            }
-            task.number = idx + 1;
-            task.render = textChildren;
-            return task;
+        segments.forEach((segment, i) => {
+            let filterFounded = segments.length !== i + 1;
+
+            textParts.push(React.DOM.span({key: i}, segment));
+
+            filterFounded && textParts.push(React.DOM.span({
+                className: 'highlighted',
+                key: `${i}-high`
+            }, replacements[i]));
         });
+
+        return {
+            textParts: textParts,
+            taskFounded: taskFounded
+        };
     }
 
   render() {

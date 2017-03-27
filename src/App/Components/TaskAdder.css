@@ -1,0 +1,9 @@
+.btn-add {
+    margin-left: 15px;
+}
+
+.task-adder {
+    align-items: center;
+    display: flex;
+    margin-bottom: 5px;
+}

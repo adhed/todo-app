@@ -6,8 +6,8 @@ class TaskList extends Component {
   render() {
       return (
             <div className="task-list">
-                {this.props.tasks.map(task => {
-                    return <Task task={task} />
+                {Object.keys(this.props.tasks).map((taskName, idx) => {
+                    return <Task key={idx} task={this.props.tasks[taskName]} />
                 })}
             </div>
         );

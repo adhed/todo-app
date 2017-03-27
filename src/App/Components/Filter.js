@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import './Filter.css';
+import FontAwesome from 'react-fontawesome';
 
 class Filter extends Component {
     constructor(props) {
@@ -33,10 +34,11 @@ class Filter extends Component {
                     id="task-filter"
                     onChange={this.handleChange}
                 />
-                <span 
+                <FontAwesome 
+                    name="times"
                     className="filter-remover" 
                     onClick={this.handleRemoveClick}
-                    title="Remove filter">x</span>
+                    title="Remove filter" />
                 <span>{this.props.foundedTasks} {tasksWord} found</span>
             </div>
         );

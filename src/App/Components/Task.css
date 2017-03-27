@@ -4,6 +4,26 @@
     line-height: 1.8em;
 }
 
-.highlighted {
+.task > .highlighted {
     background: yellow;
+}
+
+
+.task > .task-remover {
+    margin-right: 8px;
+    font-size: 0.75em;
+    color: grey;
+    vertical-align: middle;
+}
+
+.task > .task-remover:hover {
+    cursor: pointer;
+}
+
+.task > .remover-visible { 
+    visibility: visible;
+}
+
+.task > .remover-hidden {
+    visibility: hidden;
 }
