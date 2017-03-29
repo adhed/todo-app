@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: column;
     margin-top: 25px;
-    border: 3px solid grey;
+    border: 5px solid black;
     min-height: 400px;
     transition: all 1s ease-in-out;
+    border-radius: 15px;
     min-width: 350px;
-    padding: 0 20px 10px 20px;
+    background: #b3dcb5;
 }
 
 .bottom {
@@ -14,7 +15,7 @@
 }
 
 .form-group {
-    color: gray;
+    color:  rgba(232, 232, 232, 0.870588);
 }
 
 .form-group > label {

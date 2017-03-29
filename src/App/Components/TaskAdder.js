@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import FontAwesome from 'react-fontawesome';
+import Contants from '../Common/Constants';
 import './TaskAdder.css';
 
 class TaskAdder extends Component {
@@ -43,9 +45,16 @@ class TaskAdder extends Component {
     render() {
         return (
             <div className="form-group task-adder bottom">
-                <label htmlFor="add-task-input">New task</label>
+                <FontAwesome 
+                    size="lg"
+                    name="plus-circle" 
+                    alt="add"
+                    className="add-task-icon" />
                 <TextField
-                    hintText="Type what should you do"
+                    floatingLabelText="Type what should you do"
+                    floatingLabelStyle={Contants.formStyles.floatingLabelStyle}
+                    underlineStyle={Contants.formStyles.underlineStyle}
+                    inputStyle={Contants.formStyles.inputStyle}
                     ref={(input) => { this.input = input; }}
                     id="add-task-input" 
                     value={this.state.value}

@@ -1,9 +1,17 @@
 .btn-add {
-    margin-left: 15px;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 
 .task-adder {
     align-items: center;
     display: flex;
-    margin-bottom: 5px;
+    padding-bottom: 25px;
+    border-top: 3px solid black;
+    background: #1f1e1e;
+}
+
+.add-task-icon {
+    color: #4caf50;
+    margin: 30px 20px 0 20px;
 }

@@ -1,6 +1,8 @@
 .filter {
-    margin-bottom: 20px;
+    border-bottom: 2px solid black;
+    padding: 0px 20px 25px 5px;
     position: relative;
+    background: #1f1e1e;
 }
 
 .filter > span {
@@ -9,10 +11,17 @@
 
 .filter > .filter-remover {
     position: absolute;
-    top: 14px;
+    top: 40px;
     left: 275px;
 }
 
 .filter > .filter-remover:hover {
     cursor: pointer;
+}
+
+.filter-icon {
+    color: #4caf50;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0 15px 0 0;
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import './Filter.css';
+import Contants from '../Common/Constants';
 import FontAwesome from 'react-fontawesome';
+import './Filter.css';
 
 class Filter extends Component {
     constructor(props) {
@@ -27,10 +28,17 @@ class Filter extends Component {
 
         return (
             <div className="filter form-group">
-                <label htmlFor="task-filter">Filter</label>
+                <FontAwesome 
+                    name="filter" 
+                    size="lg"
+                    alt="filter"
+                    className="filter-icon" />
                 <TextField 
+                    floatingLabelText="Filter tasks by"
+                     floatingLabelStyle={Contants.formStyles.floatingLabelStyle}
+                    underlineStyle={Contants.formStyles.underlineStyle}
+                    inputStyle={Contants.formStyles.inputStyle}
                     value={this.state.value}
-                    hintText="Tasks filter"
                     id="task-filter"
                     onChange={this.handleChange}
                 />

@@ -1,0 +1,18 @@
+.title {
+    margin: 0;
+    margin-left: 10px;
+    float: left;
+}
+
+.title-box {
+    background: black;
+    color: rgba(236, 236, 236, 0.970588);
+    padding: 20px;
+}
+
+.task-icon {
+    color: #4caf50;
+    float: left;
+    vertical-align: middle;
+    margin-top: 6px;
+}
