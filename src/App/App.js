@@ -3,8 +3,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 import TaskBox from './Components/TaskBox';
-import Container from './Components/Container';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import { green100, green500, green700 } from 'material-ui/styles/colors';
+import './App.css';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -20,12 +21,20 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <AppBar 
-            title="React ToDo app"
-            showMenuIconButton={false}
-          />
-          <Container 
-            element={<TaskBox />}
-          />
+              title="React ToDo app"
+              showMenuIconButton={false}
+            />
+          <Grid fluid>
+            <Row>
+              <Col xs={12}>
+                <Row center="xs">
+                  <Col xs={12} md={8} lg={8}>
+                    <TaskBox />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Grid>
         </div>
       </MuiThemeProvider>
     );

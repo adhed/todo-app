@@ -16,7 +16,7 @@ class TaskList extends Component {
         let render = null;
 
         if (isTaskListEmpty) {
-            render = <h2>You're free today, enjoy this day!</h2>
+            render = <h2>You don't have any tasks to do, enjoy this free day!</h2>
         } else {
             render = this.getTasksList(tasksKeys);
         }

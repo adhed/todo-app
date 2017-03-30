@@ -55,6 +55,7 @@ class TaskAdder extends Component {
                     floatingLabelStyle={Contants.formStyles.floatingLabelStyle}
                     underlineStyle={Contants.formStyles.underlineStyle}
                     inputStyle={Contants.formStyles.inputStyle}
+                    fullWidth={true}
                     ref={(input) => { this.input = input; }}
                     id="add-task-input" 
                     value={this.state.value}
