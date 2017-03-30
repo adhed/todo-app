@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import {Row, Col} from 'react-flexbox-grid';
 import Filter from './Filter';
 import TaskList from './TaskList';
 import TaskAdder from './TaskAdder';
 import Title from './Title';
+import MenuBar from './MenuBar';
+import FilterSwitcher from './FilterSwitcher';
+import Constants from '../Common/Constants';
 import './TaskBox.css';
 
 class TaskBox extends Component {
@@ -11,12 +15,30 @@ class TaskBox extends Component {
         this.filter = '';
         this.state = {
             foundedTasks: 0,
-            tasks: {}
+            tasks: {},
+            isFilterVisible: false
         };
 
         this.handleTaskAdd = this.handleTaskAdd.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
         this.removeTaskHandler = this.removeTaskHandler.bind(this);
+        this.handleMenuChange = this.handleMenuChange.bind(this);
+        this.handleToggleChange = this.handleToggleChange.bind(this);
+    }
+
+    handleToggleChange(isFilterOn) {
+        this.setState({
+            isFilterVisible: isFilterOn
+        });
+        if (!isFilterOn) {
+            this.filter = '';
+            this.filterTasks();
+        }
+        
+    }
+
+    handleMenuChange(value) {
+       
     }
 
     handleTaskAdd(taskTxt) {
@@ -37,7 +59,7 @@ class TaskBox extends Component {
     }
 
     handleFilterChange(filter) {
-        this.filter = filter.split(' ')[0];
+        this.filter = filter;
         this.filterTasks();
     }
 
@@ -79,7 +101,7 @@ class TaskBox extends Component {
     }
 
     parseTaskText(taskText) {
-        let regex = new RegExp('' + this.filter + '', 'gi');
+        let regex = new RegExp(this.filter, 'gi');
         let segments = taskText.split(regex);
         let replacements = taskText.match(regex);
         let taskFounded = this.filter && segments.length > 1;
@@ -105,8 +127,18 @@ class TaskBox extends Component {
   render() {
     return (
         <div className="task-box">
-            <Title />
-            <Filter changeHandler={this.handleFilterChange} foundedTasks={this.state.foundedTasks}/>
+            <Row className="top-bar">
+                <Col xs={8}>
+                    <Title />
+                </Col>
+                <Col xs={4}>
+                    <FilterSwitcher onToggleHandler={this.handleToggleChange} />
+                </Col>
+            </Row>
+            { this.state.isFilterVisible ?
+                <Filter changeHandler={this.handleFilterChange} foundedTasks={this.state.foundedTasks}/> : null
+            }
+            <MenuBar changeHandler={this.handleMenuChange}/>
             <TaskList tasks={this.state.tasks}/>
             <TaskAdder taskAddHandler={this.handleTaskAdd}/>
         </div>

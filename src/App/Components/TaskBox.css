@@ -26,3 +26,8 @@
 .task-icon {
     margin-right: 10px;
 }
+
+.top-bar {
+    background: black;
+    padding: 20px;
+}

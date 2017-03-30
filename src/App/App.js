@@ -9,8 +9,8 @@ import './App.css';
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: green500,
-    primary2Color: green700,
+    primary1Color: green700,
+    primary2Color: green500,
     primary3Color: green100
   }
 });

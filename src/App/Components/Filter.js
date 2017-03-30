@@ -35,7 +35,7 @@ class Filter extends Component {
                     className="filter-icon" />
                 <TextField 
                     floatingLabelText="Filter tasks by"
-                     floatingLabelStyle={Contants.formStyles.floatingLabelStyle}
+                    floatingLabelStyle={Contants.formStyles.floatingLabelStyle}
                     underlineStyle={Contants.formStyles.underlineStyle}
                     inputStyle={Contants.formStyles.inputStyle}
                     value={this.state.value}
