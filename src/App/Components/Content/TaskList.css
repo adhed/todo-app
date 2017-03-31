@@ -1,3 +1,5 @@
 .task-list {
-    margin: 20px 0 15px 25px;
+    margin: 20px 0 15px 15px;
+    padding-top: 30px;
+    padding-bottom: 40px;
 }

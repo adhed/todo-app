@@ -71,10 +71,11 @@ const parseTasksByState = (tasks, state) => {
 }
 
 const mapStateToProps = (state) => {
-    const { filteredTasks, foundedTasks } = filterTasksByTerm(state.tasks, state.filterTerm.value);
+    const parsedTasks = parseTasksByState(state.tasks, state.filterState.value);
+    const { filteredTasks, foundedTasks } = filterTasksByTerm(parsedTasks, state.filterTerm.value);
 
     return {
-        tasks: parseTasksByState(filteredTasks, state.filterState.value),
+        tasks: filteredTasks,
         isFoundedTasksBarVisible: state.filterTerm.visible,
         foundedTasks,
         filterTerm: state.filterTerm.value

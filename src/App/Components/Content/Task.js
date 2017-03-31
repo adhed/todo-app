@@ -55,9 +55,12 @@ class Task extends Component {
         let removerClasses = classNames({
             'task-remover': true,
             'remover-visible': this.state.removerVisible,
-            'remover-hidden': !this.state.removerVisible
+            'remover-hidden': !this.state.removerVisible,
+        });     
+        let outerSpanClasses = classNames({
+            'outer': true,
+            'completed': this.props.task.isCompleted
         });
-
         let stateIconTitle = this.props.task.isCompleted ? 'active' : 'completed';
         let stateIconName = this.getIconStateName();
         
@@ -78,7 +81,7 @@ class Task extends Component {
                     onMouseOver={this.handleIconStateMouseOver}
                     onMouseOut={this.handleIconStateMouseOut}
                     name={stateIconName} />
-                {this.props.number}. {this.props.task.content}
+                 {this.props.number}. {this.props.task.content}                
             </div>
         );
   }

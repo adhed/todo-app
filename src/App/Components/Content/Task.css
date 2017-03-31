@@ -11,8 +11,6 @@
 
 .task > .task-remover {
     margin-right: 8px;
-    font-size: 0.75em;
-    color: grey;
     vertical-align: middle;
 }
 
@@ -33,4 +31,13 @@
     cursor: pointer;
     vertical-align: middle;
     margin: 0 15px 0 10px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: rgba(140, 140, 140, 0.61);
+}
+
+.inner {
+    color: black;
 }
