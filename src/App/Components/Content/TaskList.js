@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import Task from './Task';
-import './TaskList.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { changeFoundedTasks } from '../../actions/actionCreators'
+import Task from './Task'
+import './TaskList.css'
 
 class TaskList extends Component {
-
     getTasksList() {
         return this.props.tasks.map((task, idx) => {
             return <Task key={idx} task={task} number={idx+1}/>
@@ -11,6 +12,7 @@ class TaskList extends Component {
     }
 
     render() {
+        
         let isTaskListEmpty = this.props.tasks.length === 0;
         let render = null;
 
@@ -28,4 +30,4 @@ class TaskList extends Component {
     }
 }
 
-export default TaskList;
+export default connect()(TaskList);

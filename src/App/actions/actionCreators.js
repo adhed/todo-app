@@ -2,11 +2,13 @@ import {
     SET_FILTER_TERM, 
     TOGGLE_FILTER_TERM,
     ADD_TASK, 
-    REMOVE_TASK 
+    TOGGLE_TASK_STATE,
+    REMOVE_TASK,
+    SET_FILTER_STATE 
 } from './actions';
 
-const setFilterTerm = (filterTerm) => {
-    return { type: SET_FILTER_TERM, filterTerm };
+const setFilterTerm = (value) => {
+    return { type: SET_FILTER_TERM, value };
 }
 
 const toggleFilterTerm = (visible) => {
@@ -21,9 +23,19 @@ const removeTask = (id) => {
     return { type: REMOVE_TASK, id }
 }
 
+const setFilterState = (value) => {
+    return { type: SET_FILTER_STATE, value }
+}
+
+const toggleTaskState = (id) => {
+    return { type: TOGGLE_TASK_STATE, id }
+}
+
 export { 
     setFilterTerm, 
     addTask,
     removeTask,
-    toggleFilterTerm
+    toggleTaskState, 
+    toggleFilterTerm,
+    setFilterState
 };

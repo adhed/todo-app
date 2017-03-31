@@ -4,20 +4,29 @@ import { setFilterTerm } from '../../actions/actionCreators';
 import TextField from 'material-ui/TextField';
 import Contants from '../../common/constants';
 import FontAwesome from 'react-fontawesome';
-const { string, func } = React.PropTypes;
+const { string, func, object } = React.PropTypes;
 import './Filter.css';
 
 class Filter extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { filterTerm: '' };
+        this.handleFilterTermChange = this.handleFilterTermChange.bind(this);
+        this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    }
+    
     PropTypes() {
-        filterTerm: string;
+        filter: string;
         dispatchSetFilterTerm: func;
     }
 
     handleFilterTermChange(event) {
+        this.setState({ filterTerm: event.target.value });
         this.props.dispatchSetFilterTerm(event.target.value);
     }
 
     handleRemoveClick() {
+        this.setState({ filterTerm: '' });
         this.props.dispatchSetFilterTerm('');
     }
 
@@ -36,7 +45,7 @@ class Filter extends Component {
                     floatingLabelStyle={Contants.formStyles.floatingLabelStyle}
                     underlineStyle={Contants.formStyles.underlineStyle}
                     inputStyle={Contants.formStyles.inputStyle}
-                    value={this.props.filterTerm.value}
+                    value={this.state.filterTerm}
                     id="task-filter"
                     onChange={this.handleFilterTermChange}
                 />
@@ -45,7 +54,6 @@ class Filter extends Component {
                     className="filter-remover" 
                     onClick={this.handleRemoveClick}
                     title="Remove filter" />
-                <span>{this.props.foundedTasks} {tasksWord} found</span>
             </div>
         );
     }
@@ -53,8 +61,7 @@ class Filter extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        filterTerm : state.filterTerm,
-        foundedTasks: state.foundedTasks
+        foundedTasks: state.filterTerm.foundedTasks
     };
 }
 

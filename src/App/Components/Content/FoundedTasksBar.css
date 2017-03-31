@@ -1,0 +1,10 @@
+.founded-tasks-bar {
+    background: #1f1e1e;
+    color: rgba(232, 232, 232, 0.870588);
+    padding: 10px 10px 10px 20px;
+}
+
+.founded-tasks-bar > .search-icon {
+    padding-right: 20px;
+    color: #4caf50;
+}
