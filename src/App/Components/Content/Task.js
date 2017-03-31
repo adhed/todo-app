@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { removeTask } from '../../actions/actionCreators';
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import './Task.css';
@@ -22,7 +24,7 @@ class Task extends Component {
     }
 
     handleRemoveClick() {
-        this.props.task.removeTaskCallback(this.props.task.number);
+        this.props.dispatch(removeTask(this.props.task.id));
     }
     
     render() {
@@ -42,10 +44,10 @@ class Task extends Component {
                     className={removerClasses} 
                     onClick={this.handleRemoveClick}
                     title="Remove task" />
-                {this.props.task.number}. {this.props.task.render}
+                {this.props.number}. {this.props.task.content}
             </div>
         );
   }
 }
 
-export default Task;
+export default connect()(Task);

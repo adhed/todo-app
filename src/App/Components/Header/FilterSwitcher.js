@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import FontAwesome from 'react-fontawesome';
-import {Toggle} from 'material-ui';
-import Contants from '../Common/Constants';
-import './FilterSwitcher.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { toggleFilterTerm } from '../../actions/actionCreators'
+import FontAwesome from 'react-fontawesome'
+import { Toggle } from 'material-ui'
+import Contants from '../../common/constants'
+import './FilterSwitcher.css'
 
 class FilterSwitcher extends Component {
     constructor(props) {
@@ -10,8 +12,8 @@ class FilterSwitcher extends Component {
         this.onToggle = this.onToggle.bind(this);
     }
 
-    onToggle(event, isInputChecked) {
-        this.props.onToggleHandler(isInputChecked);
+    onToggle() {
+        this.props.dispatch(toggleFilterTerm());
     }
 
     render() {
@@ -32,4 +34,4 @@ class FilterSwitcher extends Component {
     }
 }
 
-export default FilterSwitcher;
+export default connect()(FilterSwitcher);

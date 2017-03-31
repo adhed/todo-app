@@ -4,21 +4,20 @@ import './TaskList.css';
 
 class TaskList extends Component {
 
-    getTasksList(tasksKeys) {
-        return tasksKeys.map((taskName, idx) => {
-            return <Task key={idx} task={this.props.tasks[taskName]} />
+    getTasksList() {
+        return this.props.tasks.map((task, idx) => {
+            return <Task key={idx} task={task} number={idx+1}/>
         })
     }
 
     render() {
-        let tasksKeys = Object.keys(this.props.tasks);
-        let isTaskListEmpty = tasksKeys.length === 0;
+        let isTaskListEmpty = this.props.tasks.length === 0;
         let render = null;
 
         if (isTaskListEmpty) {
             render = <h2>You don't have any tasks to do, enjoy this free day!</h2>
         } else {
-            render = this.getTasksList(tasksKeys);
+            render = this.getTasksList();
         }
 
         return (

@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import FontAwesome from 'react-fontawesome';
-import Contants from '../Common/Constants';
-import './TaskAdder.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addTask }  from '../../actions/actionCreators'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+import FontAwesome from 'react-fontawesome'
+import Contants from '../../common/constants'
+import './TaskAdder.css'
 
 class TaskAdder extends Component {
     constructor(props) {
         super(props);
         this.state = { value: '', errorText: '' };
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -20,12 +23,12 @@ class TaskAdder extends Component {
 
     handleSubmit() {
         if (!this.state.value) {
-            this.setState({errorText: 'Task cannot be empty.'});
+            this.setState({ errorText: 'Task cannot be empty.' });
             return;
         }
 
-        this.props.taskAddHandler(this.state.value);
-        this.setState({value: ''});
+        this.props.dispatch(addTask(this.state.value));
+        this.setState({ value: '' });
         this.input.focus();
     }
 
@@ -74,4 +77,4 @@ class TaskAdder extends Component {
   }
 }
 
-export default TaskAdder;
+export default connect()(TaskAdder);

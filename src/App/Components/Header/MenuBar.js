@@ -1,26 +1,10 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import FontAwesome from 'react-fontawesome';
-import Constants from '../Common/Constants';
+import Constants from '../../common/constants';
 import './MenuBar.css';
 
 class MenuBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeTab: Constants.menuTabs.ACTIVE
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(value) {
-        this.setState({
-            activeTab: value
-        });
-        this.props.changeHandler(value);
-    }
-
     render() {
         const inkBarStyle = {
             background: Constants.colors.LIGHT_WHITE
@@ -28,7 +12,6 @@ class MenuBar extends Component {
         return(
             <Tabs 
                 className="menu-bar" 
-                onChange={this.handleChange}
                 inkBarStyle={inkBarStyle}
             >
                 <Tab 

@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setFilterTerm } from '../../actions/actionCreators';
 import TextField from 'material-ui/TextField';
-import Contants from '../Common/Constants';
+import Contants from '../../common/constants';
 import FontAwesome from 'react-fontawesome';
+const { string, func } = React.PropTypes;
 import './Filter.css';
 
 class Filter extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: '' };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    PropTypes() {
+        filterTerm: string;
+        dispatchSetFilterTerm: func;
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
-        this.props.changeHandler(event.target.value);
-    };
+    handleFilterTermChange(event) {
+        this.props.dispatchSetFilterTerm(event.target.value);
+    }
 
-    handleRemoveClick(event) {
-        this.setState({value: ''});
-        this.props.changeHandler('');
-    };
+    handleRemoveClick() {
+        this.props.dispatchSetFilterTerm('');
+    }
 
     render() {
         let tasksWord = this.props.foundedTasks === 1 ? 'task' : 'tasks';
@@ -38,9 +36,9 @@ class Filter extends Component {
                     floatingLabelStyle={Contants.formStyles.floatingLabelStyle}
                     underlineStyle={Contants.formStyles.underlineStyle}
                     inputStyle={Contants.formStyles.inputStyle}
-                    value={this.state.value}
+                    value={this.props.filterTerm.value}
                     id="task-filter"
-                    onChange={this.handleChange}
+                    onChange={this.handleFilterTermChange}
                 />
                 <FontAwesome 
                     name="times"
@@ -53,4 +51,19 @@ class Filter extends Component {
     }
 }
 
-export default Filter;
+const mapStateToProps = (state) => {
+    return {
+        filterTerm : state.filterTerm,
+        foundedTasks: state.foundedTasks
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchSetFilterTerm(filterTerm) {
+            dispatch(setFilterTerm(filterTerm))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
