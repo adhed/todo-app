@@ -20,7 +20,11 @@ const changeFoundedTasks = (state, action) => {
 
 const toggleFilterTerm = (state, action) => {
     const newState = {};
-    Object.assign(newState, state, { visible: !state.visible });
+    Object.assign(newState, state, { 
+        visible: !state.visible,
+        value: DEFAULT_STATE.value,
+        foundedTasks: DEFAULT_STATE.foundedTasks
+    });
     return newState;
 }
 

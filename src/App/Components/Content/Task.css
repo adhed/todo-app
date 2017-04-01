@@ -2,16 +2,18 @@
     display: block;
     font-size: 1.3em;
     line-height: 1.8em;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+}
+
+.task:hover {
+    background: #9aca9c;
+    border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .task > .highlighted {
     background: #63b766;
-}
-
-
-.task > .task-remover {
-    margin-right: 8px;
-    vertical-align: middle;
 }
 
 .task > .task-remover:hover {
@@ -31,6 +33,7 @@
     cursor: pointer;
     vertical-align: middle;
     margin: 0 15px 0 10px;
+    width: 18px;
 }
 
 .completed {
