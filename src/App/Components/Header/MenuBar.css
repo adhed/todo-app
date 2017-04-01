@@ -1,3 +1,7 @@
 .menu-bar {
     background: black;
 }
+
+.tab-badge {
+    position: absolute;
+}

@@ -30,7 +30,7 @@ class Task extends Component {
     }
 
     handleRemoveClick() {
-        this.props.dispatch(removeTask(this.props.task.id));
+        this.props.dispatch(removeTask(this.props.task.id, this.props.task.isCompleted));
     }
     
     handleIconStateMouseOver() {

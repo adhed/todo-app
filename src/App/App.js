@@ -6,14 +6,15 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 import TaskBox from './components/TaskBox';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import { green100, green500, green700 } from 'material-ui/styles/colors';
+import { green100, green500, green700, teal900 } from 'material-ui/styles/colors';
 import './App.css';
 
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: green700,
     primary2Color: green500,
-    primary3Color: green100
+    primary3Color: green100,
+    accent1Color: teal900,
   }
 });
 
