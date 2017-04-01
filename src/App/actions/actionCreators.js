@@ -24,8 +24,8 @@ const removeTask = (id, isCompleted) => {
     return { type: REMOVE_TASK, id, isCompleted }
 }
 
-const removeAllTasks = () => {
-    return { type: REMOVE_ALL_TASKS }
+const removeAllTasks = (tasksState) => {
+    return { type: REMOVE_ALL_TASKS, tasksState }
 }
 
 const setFilterState = (value) => {

@@ -54,7 +54,7 @@ class TaskAdder extends Component {
                     alt="add"
                     className="add-task-icon" />
                 <TextField
-                    floatingLabelText="Type what should you do..."
+                    floatingLabelText="Type what should you do and press enter..."
                     floatingLabelStyle={Contants.formStyles.floatingLabelStyle}
                     underlineStyle={Contants.formStyles.underlineStyle}
                     inputStyle={Contants.formStyles.inputStyle}

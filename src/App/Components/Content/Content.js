@@ -1,19 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import TaskList from './TaskList';
-import FoundedTasksBar from './FoundedTasksBar';
-import Constants from '../../common/constants';
-import './Content.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import TaskList from './TaskList'
+import TaskRemover from './TaskRemover'
+import FoundedTasksBar from './FoundedTasksBar'
+import Constants from '../../common/constants'
+import './Content.css'
 
 class Content extends Component {
     render() {
+        let tasksAmount = (this.props.tasks && this.props.tasks.length) || 0;
         return(
             <div className="content">
                 { this.props.isFoundedTasksBarVisible && this.props.filterTerm ?
-                    <FoundedTasksBar foundedTasks={this.props.foundedTasks} /> 
+                    <FoundedTasksBar 
+                        foundedTasks={this.props.foundedTasks} 
+                        filterState={this.props.filterState} /> 
                     : null 
                  }
                 <TaskList tasks={this.props.tasks} />
+                <TaskRemover tasksAmount={tasksAmount} />
             </div>
         )
     }
@@ -78,6 +83,7 @@ const mapStateToProps = (state) => {
         tasks: filteredTasks,
         isFoundedTasksBarVisible: state.filterTerm.visible,
         foundedTasks,
+        filterState: state.filterState.value,
         filterTerm: state.filterTerm.value
     }
 }

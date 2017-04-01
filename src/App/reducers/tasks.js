@@ -1,5 +1,6 @@
 import uuid from 'uuid4';
 import { ADD_TASK, REMOVE_TASK, TOGGLE_TASK_STATE, REMOVE_ALL_TASKS } from '../actions/actions';
+import Constants from '../common/constants';
 
 const DEFAULT_STATE = {
     tasks: [],
@@ -48,10 +49,33 @@ const toggleTaskState = (state, action) => {
     return newState;
 }
 
-const removeAllTasks = (state, action) => {
+const removeAllActiveTasks = (state) => {
     let newState = {};
-    newState = Object.assign(newState, state, DEFAULT_STATE);
+    newState = Object.assign(newState, state, {
+        tasks: state.tasks.filter(task => task.isCompleted),
+        activeTasks: 0
+    });
     return newState;
+}
+
+const removeAllCompletedTasks = (state) => {
+    let newState = {};
+    newState = Object.assign(newState, state, {
+        tasks: state.tasks.filter(task => !task.isCompleted),
+        completedTasks: 0
+    });
+    return newState;
+}
+
+const removeAllTasks = (state, action) => {
+    switch (action.tasksState) {
+        case Constants.menuTabs.ACTIVE:
+            return removeAllActiveTasks(state);
+        case Constants.menuTabs.COMPLETED:
+            return removeAllCompletedTasks(state);
+        default:
+            return state;
+    };
 }
 
 const tasksReducer = (state = DEFAULT_STATE, action) => {

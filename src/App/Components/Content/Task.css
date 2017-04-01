@@ -12,8 +12,11 @@
     border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.task > .highlighted {
-    background: #63b766;
+.task > .task-remover {
+    float: right;
+    margin-right: 20px;
+    padding-top: 6px;
+    vertical-align: middle;
 }
 
 .task > .task-remover:hover {
@@ -38,9 +41,18 @@
 
 .completed {
     text-decoration: line-through;
-    color: rgba(140, 140, 140, 0.61);
+    color: rgba(146, 145, 145, 0.61);
 }
 
-.inner {
+.task-content {
+    display: inline-block;
+}
+
+.highlighted {
+    background: #63b766;
+}
+
+.task-content > span {
     color: black;
+    cursor: default;
 }

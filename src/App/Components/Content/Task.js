@@ -57,8 +57,8 @@ class Task extends Component {
             'remover-visible': this.state.removerVisible,
             'remover-hidden': !this.state.removerVisible,
         });     
-        let outerSpanClasses = classNames({
-            'outer': true,
+        let divContentClasses = classNames({
+            'task-content': true,
             'completed': this.props.task.isCompleted
         });
         let stateIconTitle = this.props.task.isCompleted ? 'active' : 'completed';
@@ -68,12 +68,7 @@ class Task extends Component {
             <div className="task" 
                 key={this.props.task.number}
                 onMouseOut={this.handleTaskMouseOut}
-                onMouseOver={this.handleTaskMouseOver}>
-                <FontAwesome 
-                    name='times'
-                    className={removerClasses} 
-                    onClick={this.handleRemoveClick}
-                    title="Remove task" />                
+                onMouseOver={this.handleTaskMouseOver}>               
                 <FontAwesome
                     className="icon-state task-icon-uncheck"
                     title={`Mark this task as ${stateIconTitle}`}
@@ -81,7 +76,15 @@ class Task extends Component {
                     onMouseOver={this.handleIconStateMouseOver}
                     onMouseOut={this.handleIconStateMouseOut}
                     name={stateIconName} />
-                 {this.props.number}. {this.props.task.content}                
+                 <div className={divContentClasses}>
+                     <span>{this.props.number}. </span>
+                     {this.props.task.content}   
+                 </div>            
+                 <FontAwesome 
+                    name="trash-o" 
+                    className={removerClasses} 
+                    onClick={this.handleRemoveClick}
+                    title="Remove task" /> 
             </div>
         );
   }

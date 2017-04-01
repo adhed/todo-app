@@ -4,7 +4,9 @@ import TaskAdder from './TaskAdder';
 class Footer extends Component {
     render() {
         return(
-            <TaskAdder />
+            <div>
+                <TaskAdder />
+            </div>
         );
     }
 } 
