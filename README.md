@@ -28,6 +28,7 @@ npm start
 * filter tasks by state (completed / active)
 * see how many tasks are in each state
 * toggle filter bar
+* mark task as completed or revert it to active state
 * localStorage support
 
 # What could be done in the future
