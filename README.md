@@ -1,4 +1,7 @@
-Simple React ToDo app with Material UI design. 
+Simple React + Redux ToDo app with Material UI design.
+
+# Demo
+https://adhed.github.io/todo-app/build/
 
 # How to run
 
@@ -18,11 +21,16 @@ npm start
 
 # What has been done
 * adding tasks
-* removing tasks
-* filtering task
-* see founded phrases as highlighted parts of text
-* see how many tasks have been founded by filter
+* removing tasks (each one or all in the state)
+* filter tasks by phrase
+* see found phrases as highlighted parts of a text
+* see how many tasks have been found by filter (for each state)
+* filter tasks by state (completed / active)
+* see how many tasks are in each state
+* toggle filter bar
+* localStorage support
 
 # What could be done in the future
-* store tasks in localStorage
-* support filtering by multiple words
+* prioriterize tasks
+* edit task's content
+* fix bugs with special chars in the filter e.g. /()][] 
