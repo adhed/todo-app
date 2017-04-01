@@ -10,7 +10,7 @@ class FoundedTasksBar extends Component {
         return (
             <div className="founded-tasks-bar">
                 <FontAwesome name="search" className="search-icon" />
-                <span>{this.props.foundedTasks} {taskStateWord} {tasksWord} founded by filter</span>
+                <span>{this.props.foundedTasks} {taskStateWord} {tasksWord} found by filter</span>
             </div>
         )
     }
