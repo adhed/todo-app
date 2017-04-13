@@ -1,4 +1,4 @@
-Simple React + Redux ToDo app with Material UI design.
+React + Redux ToDo app with Material Design components.
 
 # Demo
 https://adhed.github.io/todo-app/build/
